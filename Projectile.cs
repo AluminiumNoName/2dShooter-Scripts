@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    //описываем столкновение снар€да с преп€тствием
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //если снар€д коснулс€ преп€тстви€
         if (collision.tag == "Obstacle")
         {
+            //разрушаем обоих
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }
 
+    //переменна€ дл€ скорости сн€р€да
     public float speed;
-    // Start is called before the first frame update
+
+    //разрушаем объект через 5секунд после начала игры
     void Start()
     {
         Destroy(gameObject, 5);
     }
 
-    // Update is called once per frame
+    //объект движетс€ в направлении вверх с посто€нной скоростью
     void Update()
     {
         transform.position = (Vector2)transform.position + Vector2.up * speed * Time.deltaTime;
